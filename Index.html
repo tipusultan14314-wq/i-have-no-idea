@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Addton — Modern SaaS Landing</title>
+  <meta name="description" content="Addton — a clean, modern front page with hero, features, stats, testimonials and CTA." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Addton — Modern SaaS Landing" />
+  <meta property="og:description" content="A front-end page ready to wire to your product." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="preview.png" />
+
+  <style>
+    :root{
+      --bg: #0b0e1a;           /* page background */
+      --surface: #0f1429;      /* card/nav surfaces */
+      --muted: #b7c4ff;        /* secondary text */
+      --ink: #eef1ff;          /* main text */
+      --line: #1a2146;         /* borders */
+      --brand1: #6ea8ff;       /* brand gradient from */
+      --brand2: #8b5cf6;       /* brand gradient to */
+      --accent: #90b0ff;       /* accents */
+      --shadow: 0 20px 40px rgba(0,0,0,.45), 0 0 40px rgba(139,92,246,.18);
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--ink);
+      background:
+        radial-gradient(1400px 900px at 70% -10%, rgba(108,146,255,.12), transparent 60%),
+        radial-gradient(1000px 700px at 0% 110%, rgba(139,92,246,.12), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .container{width:min(1200px,92%);margin-inline:auto}
+
+    /* ====== NAVBAR ====== */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(160%) blur(10px);
+      background:linear-gradient(180deg, rgba(11,14,26,.8), rgba(11,14,26,.5));
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:0 10px 30px rgba(139,92,246,.4)}
+    .nav-links{display:flex;gap:16px;align-items:center}
+    .nav-links a{padding:8px 12px;border-radius:999px;text-decoration:none;color:var(--ink);border:1px solid transparent}
+    .nav-links a:hover{border-color:var(--line);}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:.75rem 1rem;border-radius:999px;border:1px solid #21306b;background:#121633;box-shadow:var(--shadow);text-decoration:none}
+    .btn:hover{transform:translateY(-2px);filter:drop-shadow(0 0 10px rgba(139,92,246,.25))}
+    .btn.primary{background:linear-gradient(135deg, rgba(110,168,255,.18), rgba(139,92,246,.12));border-color:#2a3475}
+
+    /* ====== HERO ====== */
+    .hero{position:relative;padding:80px 0 40px;text-align:center}
+    .hero h1{font-size:clamp(2rem,6vw,3.6rem);margin:.4rem 0}
+    .hero p.sub{max-width:760px;margin:0 auto;color:var(--muted)}
+    .hero-cta{display:flex;gap:12px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+
+    /* Decorative glow/particles */
+    .glow{position:absolute;inset:0;pointer-events:none}
+    .glow:before,.glow:after{content:"";position:absolute;border-radius:50%;filter:blur(60px);opacity:.6}
+    .glow:before{width:340px;height:340px;background:radial-gradient(circle,var(--brand2),transparent 70%);top:10%;left:5%}
+    .glow:after{width:420px;height:420px;background:radial-gradient(circle,var(--brand1),transparent 70%);bottom:0%;right:10%}
+
+    /* ====== TRUST / STATS ====== */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px auto 0}
+    .stat{background:linear-gradient(180deg, rgba(18,22,51,.8), rgba(13,16,34,.8));border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);text-align:center}
+    .stat h3{margin:0 0 4px;font-size:1.8rem}
+    .stat p{margin:0;color:var(--muted)}
+    @media(max-width:800px){.stats{grid-template-columns:1fr}}
+
+    /* ====== FEATURES ====== */
+    .section{padding:60px 0}
+    .section h2{font-size:clamp(1.5rem,3.5vw,2.2rem);text-align:center;margin:0 0 10px}
+    .section p.lead{color:var(--muted);text-align:center;margin:0 auto 24px;max-width:800px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+    .card{background:linear-gradient(180deg, rgba(18,22,51,.8), rgba(13,16,34,.8));border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .icon{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:0 10px 24px rgba(139,92,246,.35);margin-bottom:10px}
+    .card h3{margin:.2rem 0 .3rem}
+    .card p{margin:0;color:var(--muted)}
+
+    /* ====== SHOWCASE ====== */
+    .showcase{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center}
+    .screen{aspect-ratio:16/10;border-radius:18px;background:radial-gradient(120% 120% at 30% 20%, rgba(139,92,246,.14), rgba(17,21,46,.9));border:1px solid var(--line);box-shadow:var(--shadow)}
+    .bullets{display:grid;gap:12px}
+    .bullet{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand1),var(--brand2));margin-top:8px;box-shadow:0 0 12px rgba(139,92,246,.6)}
+    .bullet p{margin:0;color:var(--muted)}
+    @media(max-width:900px){.showcase{grid-template-columns:1fr}}
+
+    /* ====== TESTIMONIALS ====== */
+    .testis{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.testis{grid-template-columns:1fr}}
+    .quote{position:relative;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:linear-gradient(180deg, rgba(18,22,51,.8), rgba(13,16,34,.8));box-shadow:var(--shadow)}
+    .quote:before{content:"\201C";position:absolute;top:-24px;left:12px;font-size:60px;color:rgba(139,92,246,.3)}
+    .person{display:flex;align-items:center;gap:10px;margin-top:12px;color:var(--muted)}
+    .avatar{width:32px;height:32px;border-radius:50%;background:#222a55;border:1px solid var(--line)}
+
+    /* ====== CTA & FOOTER ====== */
+    .cta{display:grid;place-items:center;text-align:center;padding:70px 0;background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(17,21,46,.9));border-radius:24px;border:1px solid var(--line);box-shadow:var(--shadow)}
+    footer{padding:30px 0;border-top:1px solid var(--line);color:var(--muted);text-align:center;margin-top:40px}
+
+    /* Animations */
+    .fade{opacity:0;transform:translateY(12px);transition:opacity .7s ease, transform .7s ease}
+    .fade.show{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><div class="logo" aria-hidden="true"></div> Addton</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#showcase">How it works</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#cta" class="btn primary">Get started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero container">
+    <div class="glow" aria-hidden="true"></div>
+    <h1>Where product ideas turn into <span style="background:linear-gradient(135deg,var(--brand1),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent">delightful experiences</span></h1>
+    <p class="sub">A crisp front page built for speed and clarity. Drop in your copy, screenshots, and brand colors and ship.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#cta">Start free</a>
+      <a class="btn" href="#showcase">See it in action</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><h3>2×</h3><p>Faster mock‑to‑code</p></div>
+      <div class="stat"><h3>98%</h3><p>Lighthouse score</p></div>
+      <div class="stat"><h3>0 deps</h3><p>No frameworks needed</p></div>
+    </div>
+  </header>
+
+  <!-- ===== FEATURES ===== -->
+  <section id="features" class="section container fade">
+    <h2>Built-in to help you launch</h2>
+    <p class="lead">Clean cards, glowing accents, and accessibility-first components so your content stands out.</p>
+    <div class="grid-3">
+      <article class="card">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>Pixel‑close layout</h3>
+        <p>Responsive grid with fluid type scales, ready to match your Figma frame.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>Accessible by default</h3>
+        <p>High contrast palette, focusable controls, semantic HTML.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true"></div>
+        <h3>Glassy glow</h3>
+        <p>Soft gradients and neon edges with restrained motion for a premium feel.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== SHOWCASE ===== -->
+  <section id="showcase" class="section container fade">
+    <div class="showcase">
+      <div class="screen" aria-label="Product screenshot placeholder"></div>
+      <div class="bullets">
+        <div class="bullet"><div class="dot"></div><div><h3>Drop-in hero</h3><p>Replace the heading, subcopy, and buttons to mirror your brand voice.</p></div></div>
+        <div class="bullet"><div class="dot"></div><div><h3>Feature cards</h3><p>Three-up card grid that stacks gracefully on mobile.</p></div></div>
+        <div class="bullet"><div class="dot"></div><div><h3>Social proof</h3><p>Stats and quotes to boost conversion without clutter.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section id="testimonials" class="section container fade">
+    <h2>Loved by designers</h2>
+    <p class="lead">Short, credible snippets that make visitors feel confident.</p>
+    <div class="testis">
+      <div class="quote">
+        “The layout was spot‑on with our Figma file within a day.”
+        <div class="person"><div class="avatar" aria-hidden="true"></div> Priya — Product Designer</div>
+      </div>
+      <div class="quote">
+        “Subtle glow, crisp type, and great performance out of the box.”
+        <div class="person"><div class="avatar" aria-hidden="true"></div> Arjun — Front‑end Engineer</div>
+      </div>
+      <div class="quote">
+        “Finally a hero that actually looks good on mobile.”
+        <div class="person"><div class="avatar" aria-hidden="true"></div> Nisha — Founder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section id="cta" class="container">
+    <div class="cta fade">
+      <h2>Ready to launch Addton?</h2>
+      <p class="lead" style="margin:0 0 16px">Swap copy, drop in screenshots, and deploy.</p>
+      <div class="hero-cta"><a class="btn primary" href="#">Get started</a><a class="btn" href="#">View docs</a></div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Addton. All rights reserved.
+  </footer>
+
+  <script>
+    // Auto year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fade-in on view
+    const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} }),{threshold:.15});
+    document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
